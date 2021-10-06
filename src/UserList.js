@@ -3,12 +3,13 @@ import React from "react";
 function User({ user }) {
   return (
     <div>
-      <b>{user.username}</b> <span>({user.email})</span>
+      <b>{user.username}</b>
+      <span>({user.email})</span>
     </div>
   );
 }
 
-function UserList() {
+function UserList({ user }) {
   const users = [
     {
       id: 1,
