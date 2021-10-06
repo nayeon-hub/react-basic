@@ -43,13 +43,27 @@ function App() {
       username,
       email,
     };
-    setUsers([...users, user]); //spread 연산자로 리스트 추가
+    setUsers(users.concat(user)); //spread 연산자로 리스트 추가
+
     setInputs({
       username: "",
       email: "",
     }); //  value 초기화
     nextId.current += 1;
   };
+
+  const onRemove = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  const onToggle = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
+  };
+
   return (
     <>
       <CreateUser
@@ -58,7 +72,7 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} />;
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />;
     </>
   );
 }
